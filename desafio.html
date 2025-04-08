@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Calculadora</title>
+        <link type="text/css" rel="stylesheet" href="style.css">
+    </head>
+
+    <body class="light-mode">
+        <header>
+            <h1>Calculadora</h1>
+            <button class="toggle-button" onclick="toggleMode()">Modo Claro/Escuro</button>
+        </header>
+    
+        <section class="numeros">
+            <form>
+                <label for="num1" class="fonte2">Digite o primeiro número</label>
+                <input type="number" id="num1" name="num1" class="caixa" required><br><br>
+
+                <label for="num2" class="fonte2">Digite o segundo número</label>
+                <input type="number" id="num2" name="num2" class="caixa" required><br><br>
+            </form>
+        </section>
+
+        <h2>Operações</h2>
+
+        <div class="numeros">
+            <button id="soma" class="fonte1">+</button>
+            <button id="sub" class="fonte1">-</button>
+            <button id="divs" class="fonte1">÷</button>
+            <button id="mult" class="fonte1">*</button>
+        </div>
+
+        <h2>Resultado</h2>
+        <div id="resultado" class="caixinha numeros fonte1"></div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
