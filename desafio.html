@@ -1,40 +1,52 @@
 <!DOCTYPE html>
-<html lang="pt">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Calculadora</title>
-        <link type="text/css" rel="stylesheet" href="style.css">
-    </head>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="calculator.png" type="image/png">
+</head>
+<body>
+    <h1>CALCULADORA</h1>
+  <div class="mode-toggle">
+    <button id="modeButton">Dark Mode</button>
+  </div>
+  <div class="calculator-container">
+    <div class="historico">
+      <div id="historico"></div>
+    </div>
+    <div class="display">
+      <span id="valor">0</span>
+    </div>
+    <div class="teclado">
+      <button class="btn" data-value="AC">AC</button>
+      <button class="btn" data-value="DEL">DEL</button>
+      <button class="btn" class="spacer"></button>
+      <button class="btn" data-value="/">/</button>
 
-    <body class="light-mode">
-        <header>
-            <h1>Calculadora</h1>
-            <button class="toggle-button" onclick="toggleMode()">Modo Claro/Escuro</button>
-        </header>
-    
-        <section class="numeros">
-            <form>
-                <label for="num1" class="fonte2">Digite o primeiro número</label>
-                <input type="number" id="num1" name="num1" class="caixa" required><br><br>
+      <button class="btn" data-value="7">7</button>
+      <button class="btn" data-value="8">8</button>
+      <button class="btn" data-value="9">9</button>
+      <button class="btn" data-value="*">*</button>
 
-                <label for="num2" class="fonte2">Digite o segundo número</label>
-                <input type="number" id="num2" name="num2" class="caixa" required><br><br>
-            </form>
-        </section>
+      <button class="btn" data-value="4">4</button>
+      <button class="btn" data-value="5">5</button>
+      <button class="btn" data-value="6">6</button>
+      <button class="btn" data-value="-">-</button>
 
-        <h2>Operações</h2>
+      <button class="btn" data-value="1">1</button>
+      <button class="btn" data-value="2">2</button>
+      <button class="btn" data-value="3">3</button>
+      <button class="btn" data-value="+">+</button>
 
-        <div class="numeros">
-            <button id="soma" class="fonte1">+</button>
-            <button id="sub" class="fonte1">-</button>
-            <button id="divs" class="fonte1">÷</button>
-            <button id="mult" class="fonte1">*</button>
-        </div>
+      <button class="btn" class="spacer"></button>
+      <button class="btn" data-value="0">0</button>
+      <button class="btn" data-value=".">.</button>
+      <button class="btn" data-value="=">=</button>
+    </div>
+  </div>
 
-        <h2>Resultado</h2>
-        <div id="resultado" class="caixinha numeros fonte1"></div>
-
-        <script src="script.js"></script>
-    </body>
+  <script src="script.js"></script>
+</body>
 </html>

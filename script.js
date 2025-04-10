@@ -1,47 +1,73 @@
-function calcular(operacao) {
-    const num1 = parseFloat(document.getElementById('num1').value);
-    const num2 = parseFloat(document.getElementById('num2').value);
-    let resultado;
+// script.js
 
+let valor = "0";
+let historico = [];
 
-    if (operacao === 'soma') {
-        resultado = num1 + num2;
-    } else if (operacao === 'sub') {
-        resultado = num1 - num2;
-    } else if (operacao === 'divs') {
-        if (num2 !== 0) {
-            resultado = num1 / num2;
-        } else {
-            resultado = 'Erro: Divisão por zero';
-        }
-    } else if (operacao === 'mult') {
-        resultado = num1 * num2;
-    } else {
-        resultado = 'Operação inválida';
+const displayValor = document.getElementById("valor");
+const displayHistorico = document.getElementById("historico");
+const modeButton = document.getElementById("modeButton");
+
+const buttons = document.querySelectorAll(".btn");
+buttons.forEach(button => {
+  button.addEventListener("click", () => {
+    const btnValue = button.getAttribute("data-value");
+
+    if (btnValue === "AC") {
+      valor = "0";
+      historico = [];
+      updateDisplay();
+      return;
     }
 
-    document.getElementById('resultado').innerText = resultado;
+    if (btnValue === "DEL") {
+      valor = valor.slice(0, valor.length - 1);
+      if (valor === "") valor = "0";
+      updateDisplay();
+      return;
+    }
+
+    if (btnValue === "=") {
+      try {
+        const result = eval(valor);
+        historico.push(`${valor} = ${result}`);
+        if (historico.length > 5) historico.shift(); // Limitar o histórico
+        valor = result.toString();
+      } catch (e) {
+        valor = "Erro";
+      }
+      updateDisplay();
+      return;
+    }
+
+    // Lógica para prevenir inserção incorreta de operadores
+    if (["+", "-", "*", "/"].includes(btnValue) && ["+", "-", "*", "/"].includes(valor.slice(-1))) {
+      return;
+    }
+
+    if (valor === "0" && btnValue !== ".") {
+      valor = btnValue;
+    } else {
+      valor += btnValue;
+    }
+
+    updateDisplay();
+  });
+});
+
+function updateDisplay() {
+  displayValor.textContent = valor;
+  displayHistorico.innerHTML = historico.map(line => `<div>${line}</div>`).join("");
 }
 
+modeButton.addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
 
-document.getElementById('soma').addEventListener('click', function() {
-    calcular('soma');
+  // Alterar o texto do botão conforme o modo
+  if (document.body.classList.contains("dark-mode")) {
+    modeButton.textContent = "Light Mode";
+  } else {
+    modeButton.textContent = "Dark Mode";
+  }
 });
 
-document.getElementById('sub').addEventListener('click', function() {
-    calcular('sub');
-});
-
-document.getElementById('divs').addEventListener('click', function() {
-    calcular('divs');
-});
-
-document.getElementById('mult').addEventListener('click', function() {
-    calcular('mult');
-});
-
-function toggleMode() {
-    const body = document.body;
-    body.classList.toggle('dark-mode');
-    body.classList.toggle('light-mode');
-}
+updateDisplay();
